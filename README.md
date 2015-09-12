@@ -1,7 +1,7 @@
 # TuringMachine
-Autores:
-Guilherme Gaiardo (https://github.com/GuiGaiardo)
-Matheus Garay Trindade (https://github.com/mgt1g13)
+Autores:<br>
+Guilherme Gaiardo (https://github.com/GuiGaiardo) <br>
+Matheus Garay Trindade (https://github.com/mgt1g13) <br>
 
 
 Este projeto é parte de um trabalho da cadeira de Teoria da Computação, do curso de Ciência da Computação da
@@ -18,33 +18,33 @@ A ideia geral do programa pode ser entendida com o diagrama (arquivo Diagrama.xm
 
 Ela receberá em sua entrada padrão (STD IN) as seguintes informações:
 
-1 #Número de fitas
-5 3 4 13 #No de estados, No de simbolos no alfabeto de entrada, No de simbolos no alfabeto da fita e No de funcoes de transicao
-q1 q2 q3 q4 qac #Estados (qac = estado de aceite)
-a b # #alfabeto de entrada
-a b # B #alfabeto da fita
-(q1,a)=(q1,a,D) #Estados de transicao
-(q1,b)=(q1,b,D)
-(q1,#)=(q1,#,D)
-(q1,B)=(q2,B,E)
-(q2,a)=(q3,B,E)
-(q2,b)=(q4,B,E)
-(q2,#)=(qac,B,E)
-(q3,a)=(q3,a,E)
-(q3,b)=(q4,a,E)
-(q3,#)=(qac,a,E)
-(q4,b)=(q4,b,E)
-(q4,a)=(q3,b,E)
-(q4,#)=(qac,b,E)
-P #P = Processadora de funcões, R = Reconhecedora de linguagens
-3 #No de entradas para teste
-aaaba#ababbb #Entradas
-aaaabbb
-bbab#aab
-
-
-E gerará uma saída com o seguinte padrão:
-
-aceita #estado de aceite
-rejeita #estado de rejeicao
-aaabaababbb #fita com a saida (processamento de funcao)
+1 #Número de fitas<br>
+5 3 4 13 #No de estados, No de simbolos no alfabeto de entrada, No de simbolos no alfabeto da fita e No de funcoes de transicao<br>
+q1 q2 q3 q4 qac #Estados (qac = estado de aceite)<br>
+a b # #alfabeto de entrada<br>
+a b # B #alfabeto da fita<br>
+(q1,a)=(q1,a,D) #Estados de transicao<br>
+(q1,b)=(q1,b,D)<br>
+(q1,#)=(q1,#,D)<br>
+(q1,B)=(q2,B,E)<br>
+(q2,a)=(q3,B,E)<br>
+(q2,b)=(q4,B,E)<br>
+(q2,#)=(qac,B,E)<br>
+(q3,a)=(q3,a,E)<br>
+(q3,b)=(q4,a,E)<br>
+(q3,#)=(qac,a,E)<br>
+(q4,b)=(q4,b,E)<br>
+(q4,a)=(q3,b,E)<br>
+(q4,#)=(qac,b,E)<br>
+P #P = Processadora de funcões, R = Reconhecedora de linguagens<br>
+3 #No de entradas para teste<br>
+aaaba#ababbb #Entradas<br>
+aaaabbb<br>
+bbab#aab<br>
+<br>
+<br>
+E gerará uma saída com o seguinte padrão:<br>
+<br>
+aceita #estado de aceite<br>
+rejeita #estado de rejeicao<br>
+aaabaababbb #fita com a saida (processamento de funcao)<br>
