@@ -12,7 +12,7 @@ class Parser:
 	def __strToMultitapeTransition(self, line):
 		tapeTransitions = line[:len(line)-1].split('|')
 		transitions = list(map(self.__strToSingleTapeTransition, tapeTransitions))
-		# [('q7', '1', 'q7', '1', 'E')]
+	
 		
 		preState = ""
 		postState = ""
@@ -21,11 +21,12 @@ class Parser:
 		movements = []
 
 		for i in range(0, len(tapeTransitions)):
-			(preState, preCondition, postState, postCondition, movement) = transitions[0]
+			(preState, preCondition, postState, postCondition, movement) = transitions[i]
 			postConditions += [postCondition]
 			preConditions += [preCondition]
 			movements += [movement]
 
+		print( preState + ": " + str(preConditions))
 		return Transition(preState,preConditions, postState,postConditions, movements)
 
 
@@ -64,9 +65,25 @@ class Parser:
 				self.transitions[transition.preState] += [transition]
 			else:
 				self.transitions[transition.preState] = [transition]
-		
-		
+
 		print(self.transitions)
+		
+		#Reads the Turing machine type
+		line = stdin.readline()	
+		self.TMType = line[:len(line)-1]
+		print(self.TMType)
+
+		#reads the number of inputs
+		line = stdin.readline()
+		numberInputs = int(line[:len(line)-1])
+
+		self.inputs = []
+		for i in range(numberInputs):
+			line = stdin.readline()
+			self.inputs += [line[:len(line)-1]]
+
+		print(self.inputs)
+		
 
 
 
