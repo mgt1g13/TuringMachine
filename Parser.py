@@ -26,7 +26,7 @@ class Parser:
 			preConditions += [preCondition]
 			movements += [movement]
 
-		print( preState + ": " + str(preConditions))
+		# print( preState + ": " + str(preConditions))
 		return Transition(preState,preConditions, postState,postConditions, movements)
 
 
@@ -38,22 +38,22 @@ class Parser:
 		#gets the aux values
 		line = stdin.readline()
 		self.auxValues = list(map(int, line[:len(line)-1].split(' ')))
-		print(self.auxValues)
+		# print(self.auxValues)
 		
 		#get the states
 		line = stdin.readline()
 		self.states =  line[:len(line)-1].split(' ')
-		print(self.states)
+		# print(self.states)
 
 		#get the input Alphabet
 		line = stdin.readline()
 		self.inputAlphabet =  line[:len(line)-1].split(' ')
-		print(self.inputAlphabet)
+		# print(self.inputAlphabet)
 
 		#Get the machine Alphabet
 		line = stdin.readline()
 		self.machineAlphabet =  line[:len(line)-1].split(' ')
-		print(self.machineAlphabet)
+		# print(self.machineAlphabet)
 
 
 
@@ -66,12 +66,12 @@ class Parser:
 			else:
 				self.transitions[transition.preState] = [transition]
 
-		print(self.transitions)
+		# print(self.transitions)
 		
 		#Reads the Turing machine type
 		line = stdin.readline()	
 		self.TMType = line[:len(line)-1]
-		print(self.TMType)
+		# print(self.TMType)
 
 		#reads the number of inputs
 		line = stdin.readline()
@@ -82,7 +82,7 @@ class Parser:
 			line = stdin.readline()
 			self.inputs += [line[:len(line)-1]]
 
-		print(self.inputs)
+		# print(self.inputs)
 		
 
 
@@ -91,6 +91,6 @@ class Parser:
 
 parser = Parser()
 parser.parse()
-print(parser.nTapes)
+# print(parser.nTapes)
 
 
