@@ -27,6 +27,7 @@ class TuringMachine:
 			executed = 0
 			check_n_exec_transitions()
 			#len(self.states_transitions[self.current_state] -> threads
+			for i in range(len(self.states_transitions[self.current_state]))
 
 			if executed == False:
 				break

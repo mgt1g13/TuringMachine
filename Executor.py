@@ -20,10 +20,11 @@ class  Executor(Thread):
 		else:
 			return False
 
-		self._execute_transition()
+		#self._execute_transition()
 
 	def _check_transition(self):
-		
 		for i in range(len(self.tapes)):
-			if self.transition.pre_condition[i] != tapes[i]:
-				return False
+			print (self.tapes[i].read())
+			print("Aqui ", self.transition.pre_condition[i])
+			# if self.transition.pre_condition[i] != tapes[i]:
+			# 	return False
