@@ -89,8 +89,8 @@ class Parser:
 
 
 
-parser = Parser()
-parser.parse()
+# parser = Parser()
+# parser.parse()
 # print(parser.nTapes)
 
 
