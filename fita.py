@@ -6,7 +6,7 @@ class Tape:
 		#ponteiro para aonde está a cabeça
 		self.head = 0
 		#define caracter Branco
-		self.blankChar = blank_char
+		self.blank_char = blank_char
 
 	
 	def write(self, char):
@@ -15,12 +15,12 @@ class Tape:
 	def read(self):
 		return self.tape[self.head]
 	
-	def moveHeadUp(self):
+	def move_head_up(self):
 		self.head += 1
 		if self.head == len(self.tape):
 			self.tape += [self.blank_char]
 
-	def moveHeadDown(self):
+	def move_head_down(self):
 		if self.head > 0:
 			self.head -= 1
 

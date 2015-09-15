@@ -5,40 +5,40 @@ from Transition import Transition
 class Parser:
 	
 
-	def __strToSingleTapeTransition(self, string):
+	def __str_to_single_tape_transition(self, string):
 		return re.match( '\((.*),(.*)\)=\((.*),(.*),(.*)\)', string).groups()
 
 
-	def __strToMultitapeTransition(self, line):
-		tapeTransitions = line[:len(line)-1].split('|')
-		transitions = list(map(self.__strToSingleTapeTransition, tapeTransitions))
+	def __str_to_multi_tape_transition(self, line):
+		tape_transitions = line[:len(line)-1].split('|')
+		transitions = list(map(self.__str_to_single_tape_transition, tape_transitions))
 	
 		
-		preState = ""
-		postState = ""
-		preConditions = []
-		postConditions = []
+		pre_state = ""
+		post_state = ""
+		pre_conditions = []
+		post_conditions = []
 		movements = []
 
-		for i in range(0, len(tapeTransitions)):
-			(preState, preCondition, postState, postCondition, movement) = transitions[i]
-			postConditions += [postCondition]
-			preConditions += [preCondition]
+		for i in range(0, len(tape_transitions)):
+			(pre_state, pre_condition, post_state, post_condition, movement) = transitions[i]
+			post_conditions += [post_condition]
+			pre_conditions += [pre_condition]
 			movements += [movement]
 
-		# print( preState + ": " + str(preConditions))
-		return Transition(preState,preConditions, postState,postConditions, movements)
+		# print( pre_state + ": " + str(pre_conditions))
+		return Transition(pre_state,pre_conditions, post_state,post_conditions, movements)
 
 
 
 	def parse(self):
 		#Gets the number of tapes
-		self.nTapes = int(stdin.readline())
+		self.n_tapes = int(stdin.readline())
 
 		#gets the aux values
 		line = stdin.readline()
-		self.auxValues = list(map(int, line[:len(line)-1].split(' ')))
-		# print(self.auxValues)
+		self.aux_values = list(map(int, line[:len(line)-1].split(' ')))
+		# print(self.aux_values)
 		
 		#get the states
 		line = stdin.readline()
@@ -47,50 +47,56 @@ class Parser:
 
 		#get the input Alphabet
 		line = stdin.readline()
-		self.inputAlphabet =  line[:len(line)-1].split(' ')
-		# print(self.inputAlphabet)
+		self.input_alphabet =  line[:len(line)-1].split(' ')
+		# print(self.input_alphabet)
 
 		#Get the machine Alphabet
 		line = stdin.readline()
-		self.machineAlphabet =  line[:len(line)-1].split(' ')
-		# print(self.machineAlphabet)
+		self.machine_alphabet =  line[:len(line)-1].split(' ')
+		# print(self.machine_alphabet)
 
 
 
 		self.transitions = dict()
-		for i in range(self.auxValues[3]):
+		for i in range(self.aux_values[3]):
 			line = stdin.readline()	
-			transition = self.__strToMultitapeTransition(line)	
-			if(transition.preState in self.transitions):
-				self.transitions[transition.preState] += [transition]
+			transition = self.__str_to_multi_tape_transition(line)	
+			if(transition.pre_state in self.transitions):
+				self.transitions[transition.pre_state] += [transition]
 			else:
-				self.transitions[transition.preState] = [transition]
+				self.transitions[transition.pre_state] = [transition]
 
 		# print(self.transitions)
 		
 		#Reads the Turing machine type
 		line = stdin.readline()	
-		self.TMType = line[:len(line)-1]
-		# print(self.TMType)
+		self.tm_type = line[:len(line)-1]
+		# print(self.tm_type)
 
 		#reads the number of inputs
 		line = stdin.readline()
-		numberInputs = int(line[:len(line)-1])
+		self.number_inputs = int(line[:len(line)-1])
 
 		self.inputs = []
-		for i in range(numberInputs):
+		for i in range(self.number_inputs):
 			line = stdin.readline()
 			self.inputs += [line[:len(line)-1]]
 
 		# print(self.inputs)
-		
+		self.next_input = 0
+	
 
+	def get_input(self):
+		#returns the next input tape, if theres one. else it returns False
+		if self.next_input == self.number_inputs:
+			return False
+		return self.inputs[self.next_input]
 
 
 
 
 # parser = Parser()
 # parser.parse()
-# print(parser.nTapes)
+# print(parser.n_tapes)
 
 
