@@ -1,4 +1,6 @@
 from Checker import Checker
+from threading import Lock
+from fita import Tape
 
 class TuringMachine:
 
@@ -20,22 +22,28 @@ class TuringMachine:
 		#sets the turing machine type: language recognition or function processing
 		self.tm_type = tm_type
 
+		self.mutex = Lock()
+
+
 	
 	def run(self, input_tape):
 		self.__set_tape(input_tape)
 
+		#Checar o alfabeto da fita
+		#Checar por ambiguidade nas transicoes
 		
 
 		while self.current_state != self.final_state:
 			executed = 0
 
 
-			execution_threads = __set_transition_threads(executed)
+			execution_threads = self.__set_transition_threads(executed)
 
 			for thread in execution_threads:
 				thread.join()
 
-			if executed == False:
+			# if none was executed
+			if executed == 0:
 				break
 
 		self._generate_output()
@@ -45,8 +53,8 @@ class TuringMachine:
 		i = 0
 		execution_threads = []
 		for transition in self.states_transitions[self.current_state]:
-			execution_threads.append(Checker(executed, self.tapes[i], transition))
-			executed = execution_threads[i].start()
+			execution_threads.append(Checker(executed, self.tapes, transition, self.mutex))
+			execution_threads[i].start()
 			i += 1
 		return execution_threads
 
@@ -77,5 +85,5 @@ class TuringMachine:
 
 	def __reset_tapes(self):
 		self.tapes = []
-		for i in range(n_tapes):
-			self.tapes += [Tape(blank_char = self.tape_alphabet[len(self.tape)-1])]
+		for i in range(self.n_tapes):
+			self.tapes += [Tape(blank_char = self.tape_alphabet[len(self.tape_alphabet)-1])]

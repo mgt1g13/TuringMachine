@@ -1,9 +1,9 @@
 class Tape:
 
 	def __init__(self, tape=[], blank_char = ' '):
-		#sequência de carateres para a tape
-	    self.tape = [blank_char]
-		#ponteiro para aonde está a cabeça
+		#sequencia de carateres para a tape
+		self.tape = [blank_char]
+		#ponteiro para aonde esta a cabeca
 		self.head = 0
 		#define caracter Branco
 		self.blank_char = blank_char
