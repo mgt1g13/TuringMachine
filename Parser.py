@@ -6,6 +6,7 @@ class Parser:
 	
 
 	def __str_to_single_tape_transition(self, string):
+		#print(string)
 		return re.match( '\((.*),(.*)\)=\((.*),(.*),(.*)\)', string).groups()
 
 
@@ -13,6 +14,7 @@ class Parser:
 		tape_transitions = line[:len(line)-1].split('|')
 		transitions = list(map(self.__str_to_single_tape_transition, tape_transitions))
 	
+
 		
 		pre_state = ""
 		post_state = ""
@@ -37,6 +39,7 @@ class Parser:
 
 		#gets the aux values
 		line = stdin.readline()
+		print(line[:len(line)-1].split(' '))
 		self.aux_values = list(map(int, line[:len(line)-1].split(' ')))
 		# print(self.aux_values)
 		
@@ -90,7 +93,8 @@ class Parser:
 		#returns the next input tape, if theres one. else it returns False
 		if self.next_input == self.number_inputs:
 			return False
-		return self.inputs[self.next_input]
+		self.next_input += 1
+		return self.inputs[self.next_input - 1]
 
 
 

@@ -1,6 +1,8 @@
 from Checker import Checker
 from threading import Lock
 from fita import Tape
+import time
+from shared_int import SharedInt
 
 class TuringMachine:
 
@@ -13,6 +15,7 @@ class TuringMachine:
 		#allocate the number of needed tapes
 		self.n_tapes = n_tapes
 
+		self.initial_state = initial_state
 		#sets current state as being the initial one
 		self.current_state = initial_state
 		
@@ -28,32 +31,45 @@ class TuringMachine:
 	
 	def run(self, input_tape):
 		self.__set_tape(input_tape)
-
+		self.current_state = self.initial_state
+		print(self.initial_state)
+		print(self.final_state)
+		
+		#time.sleep(5)
 		#Checar o alfabeto da fita
 		#Checar por ambiguidade nas transicoes
 		
 
 		while self.current_state != self.final_state:
-			executed = 0
-
+			executed = SharedInt(0)
+			#print(self.current_state)
 
 			execution_threads = self.__set_transition_threads(executed)
 
 			for thread in execution_threads:
 				thread.join()
 
+			#print(executed)
 			# if none was executed
-			if executed == 0:
+			if executed.integer == 0:
 				break
 
+
 		self._generate_output()
+
+
+
+	#Check if valid state
+	def set_state(self, state):
+		self.current_state = state
 
 	def __set_transition_threads(self, executed):
 		#sets a threads for each possible transition
 		i = 0
 		execution_threads = []
 		for transition in self.states_transitions[self.current_state]:
-			execution_threads.append(Checker(executed, self.tapes, transition, self.mutex))
+	#		time.sleep(1)
+			execution_threads.append(Checker(executed, self, transition))
 			execution_threads[i].start()
 			i += 1
 		return execution_threads
