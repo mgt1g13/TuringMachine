@@ -10,7 +10,7 @@ class  Checker(Thread):
 
 	def run(self):
 		#Optmization check. Can suffer from race conditions, but it is going to be checked again 
-		# on mutual exclucion
+		# on mutual exclusion
 		if self.executed.integer == 1:
 			return #False
 

@@ -35,8 +35,13 @@ class TuringMachine:
 		print(self.initial_state)
 		print(self.final_state)
 		
-		#time.sleep(5)
-		#Checar o alfabeto da fita
+		#checks input tape
+		for symbol in input_tape:
+			if self.tape_alphabet.count(symbol) == 0:
+				self.current_state = 'bad entry'
+				self._generate_output()
+				return
+
 		#Checar por ambiguidade nas transicoes
 		
 
@@ -86,6 +91,9 @@ class TuringMachine:
 
 
 	def _generate_output(self):
+		if self.current_state = 'bad entry':
+			print("rejeita")
+			return
 		#generates the output according to the machine type
 		if self.tm_type == 	'R':
 			if self.current_state == self.final_state:
