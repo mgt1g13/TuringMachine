@@ -9,6 +9,7 @@ class  Executor(Thread):
 
 	def run(self):
 		self.tape.write(self.post_condition)
+
 		if self.movement == 'D':
 			self.tape.move_head_up()
 		elif self.movement == 'E':
