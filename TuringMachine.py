@@ -91,7 +91,7 @@ class TuringMachine:
 
 
 	def _generate_output(self):
-		if self.current_state = 'bad entry':
+		if self.current_state == 'bad entry':
 			print("rejeita")
 			return
 		#generates the output according to the machine type
