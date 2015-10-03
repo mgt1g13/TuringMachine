@@ -14,17 +14,23 @@ class  Checker(Thread):
 		if self.executed.integer == 1:
 			return #False
 
-		ok = self._check_transition()
-		if(not ok):
-			return #False
+		# ok = self._check_transition()
+		# if(not ok):
+		# 	return #False
 
 		# lock
 		self.mt.mutex.acquire()
+
+		ok = self._check_transition()
+		if(not ok):
+			self.mt.mutex.release()
+			return #False
+
 		
 		if(self.executed.integer == 0):
 			self.executed.integer = 1
 		else:
-			mutex.release()
+			self.mt.mutex.release()
 			return# False
 
 		self.mt.mutex.release()
@@ -45,8 +51,6 @@ class  Checker(Thread):
 	def _check_transition(self):
 		#check all the pre conditions for a match, if theres any unmatching condition returns False
 		for i in range(len(self.mt.tapes)):
-			#print (self.mt.tapes[i].read())
-			#print("Aqui ", self.transition.pre_conditions[i])
 			if self.transition.pre_conditions[i] != self.mt.tapes[i].read():
 				return False
 		return True

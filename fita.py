@@ -24,4 +24,7 @@ class Tape:
 		if self.head > 0:
 			self.head -= 1
 
+	def __str__(self):
+		ret = ''.join(self.tape)
+		return ret[:len(ret)-1]
 

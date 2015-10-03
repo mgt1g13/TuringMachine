@@ -13,8 +13,8 @@ mt = TuringMachine(parser.n_tapes, parser.states, parser.input_alphabet,
 
 tape_input = parser.get_input()
 while tape_input != False:
-	print("A" + str(parser.machine_alphabet))
-	#print("Aqui" + str(tape_input[1]))
+	#print("A" + str(parser.machine_alphabet))
+	#print("Aqui" + str(tape_input))
 	mt.run(tape_input)
 	tape_input = parser.get_input()
 

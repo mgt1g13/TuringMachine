@@ -39,7 +39,6 @@ class Parser:
 
 		#gets the aux values
 		line = stdin.readline()
-		print(line[:len(line)-1].split(' '))
 		self.aux_values = list(map(int, line[:len(line)-1].split(' ')))
 		# print(self.aux_values)
 		

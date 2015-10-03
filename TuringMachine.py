@@ -32,8 +32,6 @@ class TuringMachine:
 	def run(self, input_tape):
 		self.__set_tape(input_tape)
 		self.current_state = self.initial_state
-		print(self.initial_state)
-		print(self.final_state)
 		
 		#checks input tape
 		for symbol in input_tape:
@@ -94,6 +92,7 @@ class TuringMachine:
 		if self.current_state == 'bad entry':
 			print("rejeita")
 			return
+		
 		#generates the output according to the machine type
 		if self.tm_type == 	'R':
 			if self.current_state == self.final_state:
@@ -102,7 +101,7 @@ class TuringMachine:
 				print("rejeita")
 
 		else:
-			if self.current_state == self.final_state:
+			if self.current_state != self.final_state:
 				print("rejeita")
 			else:
 				print(self.tapes[0])
