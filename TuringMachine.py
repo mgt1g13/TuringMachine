@@ -41,18 +41,14 @@ class TuringMachine:
 				return
 
 		#Checar por ambiguidade nas transicoes
-		
 
 		while self.current_state != self.final_state:
 			executed = SharedInt(0)
-			#print(self.current_state)
-
+		
 			execution_threads = self.__set_transition_threads(executed)
 
 			for thread in execution_threads:
 				thread.join()
-
-			#print(executed)
 			# if none was executed
 			if executed.integer == 0:
 				break
@@ -70,6 +66,8 @@ class TuringMachine:
 		#sets a threads for each possible transition
 		i = 0
 		execution_threads = []
+
+
 		for transition in self.states_transitions[self.current_state]:
 	#		time.sleep(1)
 			execution_threads.append(Checker(executed, self, transition))

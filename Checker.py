@@ -35,7 +35,7 @@ class  Checker(Thread):
 
 		self.mt.mutex.release()
 
-
+		
 		#gera threads de execucao
 		#join nas threads de exec
 		exec_threads = self.__set_exec_threads()

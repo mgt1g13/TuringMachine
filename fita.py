@@ -26,6 +26,7 @@ class Tape:
 
 	def __str__(self):
 		ret = ''.join(self.tape)
+		#Remove caracteres em branco do fim da fita
 		while(len(ret) > 0 and ret[len(ret) - 1] == self.blank_char):
 			ret = ret[:len(ret)-1] 
 		return ret
