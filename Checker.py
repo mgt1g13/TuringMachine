@@ -14,10 +14,10 @@ class  Checker(Thread):
 		if self.executed.integer == 1:
 			return #False
 
+
 		ok = self._check_transition()
 		if(not ok):
 			return #False
-
 		# lock
 		self.mt.mutex.acquire()
 
